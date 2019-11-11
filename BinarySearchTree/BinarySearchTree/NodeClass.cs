@@ -9,15 +9,14 @@ namespace BinarySearchTree
     class NodeClass
     {
         // Member variables
-        public int data;
-        public NodeClass link;
+        public int value;
         public NodeClass leftNode;
         public NodeClass rightNode;
 
         //Constructor
         public NodeClass(int data)
         {
-            this.data=data;
+            this.value = data; // For every time through, update value to whatever is being passed through
         }
     }
 }

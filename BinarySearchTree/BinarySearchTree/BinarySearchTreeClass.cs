@@ -11,15 +11,16 @@ namespace BinarySearchTree
         // Member variables
         public NodeClass start;
 
-        public BinarySearchTreeClass()
-        {
-            start = null;
-        }
+        // Constructor
+        //public BinarySearchTreeClass()
+        //{
+        //    start = null; // Begin starting value at null
+        //}
 
-        public void AddNode(int data)
+        public void AddNode(int data) // Take whatever value is given to us
         {
-            NodeClass node = new NodeClass(data);
-            node.data = data;
+            NodeClass node = new NodeClass(data); // Instantiate NodeClass to use member values
+            node.value = data; // Give node value of whatever is passed through, 50 after the first pass
             if (start==null)
             {
                 start = node;
@@ -29,23 +30,37 @@ namespace BinarySearchTree
             {
                 NodeClass currentValue = start;
                 NodeClass parent;
-            }
 
-            while (true)
-            {
-                //temp = temp.link;
-                if (currentValue <= start)
+                while (true)
                 {
-                    currentValue = node.leftNode;
-                }
-                else
-                {
-                    temp = node.rightNode;
+                    //currentValue = currentValue.leftNode;
+                    parent = currentValue; //Parent starts null
+                    if (data <= node.value)
+                    {
+                        currentValue = node.leftNode;
+                        if (currentValue == null)
+                        {
+                            parent.leftNode = node;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        currentValue = node.rightNode;
+                        if (currentValue == null)
+                        {
+                            parent.rightNode = node;
+                            Console.WriteLine(node);
+                            return;
+                        }
+                    }
                 }
             }
-            // temp.link = node;
         }
 
-        
+        //public void SearchBinary(int data)
+        //{
+        //    Console.WriteLine("What number do you want to search?");
+        //}
     }
 }
