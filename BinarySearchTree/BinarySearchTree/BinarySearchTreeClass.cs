@@ -64,32 +64,47 @@ namespace BinarySearchTree
         public bool SearchBinary(int data)
         {
             NodeClass currentValue = start;
-            while (true)
+            bool continueSearch = true;
+            bool foundNum = false;
+            while (continueSearch)
             {
                 if (data == currentValue.value) // If it matches the parent
                 {
                     start = currentValue;
                     Console.WriteLine(data + " Found!");
                     Console.ReadLine();
-                    return true;
+                    foundNum = true;
+                    continueSearch = false;
                 }
                 else if (data < currentValue.value)
                 {
                     //Go to left
                     currentValue = currentValue.leftNode;
+                    if (currentValue == null)
+                    {
+                        continueSearch = false;
+                        Console.WriteLine(data + " not found!");
+                        Console.ReadLine();
+                    }
                 }
                 else if (data > currentValue.value)
                 {
                     // Go to right
+                    // Once data goes below search amount, currentValue returns null
                     currentValue = currentValue.rightNode;
+                    if (currentValue == null)
+                    {
+                        continueSearch = false;
+                        Console.WriteLine(data + " not found!");
+                        Console.ReadLine();
+                    }
                 }
-                else if (data == null)
+                else//Figure out how to get an else statement working
                 {
-                    Console.WriteLine("Number not found.");
-                    Console.ReadLine();
-                    return false;
+                    continueSearch = false;
                 }
             }
+            return foundNum;
         }
 
     }

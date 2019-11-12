@@ -19,7 +19,7 @@ namespace BinarySearchTree
             node.AddNode(40);
             node.AddNode(7);
             node.AddNode(84);
-            node.SearchBinary(32);
+            node.SearchBinary(7);
         }
     }
 }
