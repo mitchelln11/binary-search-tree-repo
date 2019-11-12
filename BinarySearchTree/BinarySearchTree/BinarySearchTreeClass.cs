@@ -23,7 +23,7 @@ namespace BinarySearchTree
             node.value = data; // Give node value of whatever is passed through, 50 after the first pass
             if (start==null)
             {
-                start = node;
+                start = node; // Pulls only field, which is value
                 return;
             }
             else
@@ -58,9 +58,31 @@ namespace BinarySearchTree
             }
         }
 
-        //public void SearchBinary(int data)
-        //{
-        //    Console.WriteLine("What number do you want to search?");
-        //}
+        public bool SearchBinary(int data)
+        {
+            NodeClass currentValue = start;
+            while (true)
+            {
+                if (data == currentValue.value) // If it matches the parent
+                {
+                    return true;
+                }
+                else if (data < currentValue.value)
+                {
+                    //Go to left
+                    currentValue = currentValue.leftNode;
+                }
+                else if (data > currentValue.value)
+                {
+                    // Go to right
+                    currentValue = currentValue.rightNode;
+                }
+                else
+                {
+                    Console.WriteLine("Number not found.");
+                }
+            }
+        }
+
     }
 }
