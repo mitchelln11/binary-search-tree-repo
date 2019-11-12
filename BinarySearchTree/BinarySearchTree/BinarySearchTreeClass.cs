@@ -12,15 +12,14 @@ namespace BinarySearchTree
         public NodeClass start;
 
         // Constructor
-        //public BinarySearchTreeClass()
-        //{
-        //    start = null; // Begin starting value at null
-        //}
+        public BinarySearchTreeClass()
+        {
+            start = null; // Begin starting value at null
+        }
 
         public void AddNode(int data) // Take whatever value is given to us
         {
             NodeClass node = new NodeClass(data); // Instantiate NodeClass to use member values
-            node.value = data; // Give node value of whatever is passed through, 50 after the first pass
             if (start==null)
             {
                 start = node; // Pulls only field, which is value
@@ -29,29 +28,33 @@ namespace BinarySearchTree
             else
             {
                 NodeClass currentValue = start;
-                NodeClass parent;
 
                 while (true)
                 {
-                    //currentValue = currentValue.leftNode;
-                    parent = currentValue; //Parent starts null
-                    if (data <= node.value)
+                    //parent = currentValue; //Parent starts null
+                    if (data <= currentValue.value)
                     {
-                        currentValue = node.leftNode;
-                        if (currentValue == null)
+                        if (currentValue.leftNode == null)
                         {
-                            parent.leftNode = node;
+                            currentValue.leftNode = node;
                             return;
                         }
-                    }
-                    else
-                    {
-                        currentValue = node.rightNode;
-                        if (currentValue == null)
+                        else
                         {
-                            parent.rightNode = node;
-                            Console.WriteLine(node);
+                            currentValue = currentValue.leftNode;
+                        }
+                    }
+                    else if (data >= node.value)
+                    {
+                        
+                        if (currentValue.rightNode == null)
+                        {
+                            currentValue.rightNode = node;
                             return;
+                        }
+                        else
+                        {
+                            currentValue = currentValue.rightNode;
                         }
                     }
                 }
@@ -65,6 +68,9 @@ namespace BinarySearchTree
             {
                 if (data == currentValue.value) // If it matches the parent
                 {
+                    start = currentValue;
+                    Console.WriteLine(data + " Found!");
+                    Console.ReadLine();
                     return true;
                 }
                 else if (data < currentValue.value)
@@ -77,9 +83,11 @@ namespace BinarySearchTree
                     // Go to right
                     currentValue = currentValue.rightNode;
                 }
-                else
+                else if (data == null)
                 {
                     Console.WriteLine("Number not found.");
+                    Console.ReadLine();
+                    return false;
                 }
             }
         }
